@@ -19,9 +19,9 @@ module.exports.exportPathMap = () => {
   const pages = conditions.reduce(
     (pages, name) => ({
       ...pages,
-      [`/conditions/${name}`]: {
-        page: "/condition/[name]",
-        query: { name }
+      [`/conditions/${encodeURIComponent(name)}`]: {
+        page: "/conditions/[name]",
+        query: { name: encodeURIComponent(name) }
       }
     }),
     { "/": { page: "/" } }
