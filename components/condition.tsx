@@ -2,14 +2,12 @@ import React, { useState, useCallback } from "react";
 import Link from "next/link";
 import humanFormat from "human-format";
 import chevron from "./chevron.svg";
+import { ConditionInfo } from "../types";
 import "./condition.css";
 
 type Props = {
   name: string;
-  title: string;
-  summary: string;
-  description: string;
-  plm: number;
+  condition: ConditionInfo;
 };
 
 const formatPlurals = (items: string[]): string => {
@@ -22,7 +20,8 @@ const Chevron = () => {
   return <img className="chevron" src={chevron} />;
 };
 
-const Condition = ({ name, title, summary, description, plm }: Props) => {
+const Condition = ({ name, condition }: Props) => {
+  const { title, summary, description, plm } = condition;
   const [showSummary, setShowSummary] = useState(true);
   const showLess = useCallback(() => {
     setShowSummary(true);
@@ -51,7 +50,7 @@ const Condition = ({ name, title, summary, description, plm }: Props) => {
         Based on {humanFormat(plm).replace(" ", "")} cases with bladder
         infection. In this page you can learn more about how they got better:
       </p>
-      <Link href={`/conditions/${name}/symptoms`}>
+      <Link href={`/conditions/${name}/concerning-symptoms`}>
         <p className="followup-section">
           <span>
             Watch for <b>symptoms</b> like {formatPlurals(symptoms)}.
