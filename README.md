@@ -4,6 +4,17 @@ A teaser for K's information web pages. The pages should give information about 
 
 To be SEO friendly and be fast we use Next.js to pre-render the condition pages. We create HTML pages with all the data we can fetch before interaction on build time. So when a search result is clicked there is no blocking API calls.
 
+### Product
+
+- Shows condition name and summary
+- If clicked on show more button displays a full description.
+- If selected biological sex and gender shows additional information
+  - PLM
+  - Symptoms
+  - Recovery
+  - Tests
+  - Treatments
+
 ### Development
 
 - Clone the repository
