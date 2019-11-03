@@ -22,12 +22,12 @@ const Condition = ({ name, shortDescription, longDescription }: Props) => {
         {showLong ? longDescription : shortDescription}
       </p>
       {!showLong && (
-        <button className="show-more" onClick={showMore}>
+        <button className="description-button" onClick={showMore}>
           {showLong ? "Read less" : "Read more"}
         </button>
       )}
       {showLong && (
-        <button className="show-less" onClick={showLess}>
+        <button className="description-button" onClick={showLess}>
           {showLong ? "Read less" : "Read more"}
         </button>
       )}

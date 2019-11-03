@@ -16,3 +16,12 @@
 .condition .description {
   color: #00406b;
 }
+
+.condition .description-button {
+  background: none;
+  border: none;
+  color: #2b8fff;
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+}
