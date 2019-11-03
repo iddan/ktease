@@ -17,7 +17,15 @@ const formatPlurals = (items: string[]): string => {
 };
 
 const Condition = ({ name, condition }: Props) => {
-  const { title, summary, description, plm } = condition;
+  const {
+    title,
+    summary,
+    description,
+    plm,
+    potentialSymptoms,
+    tests,
+    treatments
+  } = condition;
   const [showSummary, setShowSummary] = useState(true);
   const showLess = useCallback(() => {
     setShowSummary(true);
@@ -25,9 +33,8 @@ const Condition = ({ name, condition }: Props) => {
   const showMore = useCallback(() => {
     setShowSummary(false);
   }, [showSummary]);
-  const symptoms = ["Urinary Frequency", "Urinary Urgency"];
-  const tests = ["Urine Analysis", "Urine Culture"];
-  const treatments = ["antibiotics"];
+  const symptomTitles = potentialSymptoms.map(symptom => symptom.title);
+  const testTitles = tests.map(test => test.title);
   return (
     <div className="condition">
       <h1 className="title">{title}</h1>
@@ -46,10 +53,10 @@ const Condition = ({ name, condition }: Props) => {
         Based on {humanFormat(plm).replace(" ", "")} cases with bladder
         infection. In this page you can learn more about how they got better:
       </p>
-      <Link href={`/conditions/${name}/concerning-symptoms`}>
+      <Link href={`/conditions/${name}/symptoms`}>
         <p className="followup-section">
           <span>
-            Watch for <b>symptoms</b> like {formatPlurals(symptoms)}.
+            Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
           </span>
           <Chevron />
         </p>
@@ -57,7 +64,8 @@ const Condition = ({ name, condition }: Props) => {
       <Link href={`/conditions/${name}/tests`}>
         <p className="followup-section">
           <span>
-            Get <b>tested</b>. Doctors often ordered a {formatPlurals(tests)}.
+            Get <b>tested</b>. Doctors often ordered a{" "}
+            {formatPlurals(testTitles)}.
           </span>
           <Chevron />
         </p>
@@ -65,13 +73,13 @@ const Condition = ({ name, condition }: Props) => {
       <Link href={`/conditions/${name}/treatments`}>
         <p className="followup-section">
           <span>
-            Explore <b>treatment</b> options, including which {treatments[0]}{" "}
-            people like you took.
+            Explore <b>treatment</b> options, including which{" "}
+            {treatments[0].title} people like you took.
           </span>
           <Chevron />
         </p>
       </Link>
-      <Link href={`/conditions/${name}/conditions`}>
+      <Link href={`/conditions/${name}/recovery`}>
         <p className="followup-section">
           <span>
             <b>Recovery</b> time for most cases of {title} is a few days.
