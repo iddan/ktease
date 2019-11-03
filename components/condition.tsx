@@ -45,69 +45,95 @@ const Condition = ({ name, condition }: Props) => {
   const testTitles = tests.map(test => test.title);
   return (
     <div className="condition">
-      <ConditionHeader name={name} title={title} />
-      <ReactMarkdown
-        className="description"
-        source={showSummary ? summary : description}
-      />
-      {showSummary && (
-        <button className="description-button" onClick={showMore}>
-          Show more
-        </button>
-      )}
-      {!showSummary && (
-        <button className="description-button" onClick={showLess}>
-          Show less
-        </button>
-      )}
-      <p className="followup-intro">
-        Based on {humanFormat(plm).replace(" ", "")} cases with bladder
-        infection. In this page you can learn more about how they got better:
-      </p>
-      <h2>Learn More</h2>
-      <Link
-        href={`/conditions/[name]/symptoms`}
-        as={`/conditions/${name}/symptoms`}
-      >
-        <p className="followup-section">
-          <span>
-            Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
-          </span>
-          <Chevron />
+      <section>
+        <ConditionHeader name={name} title={title} />
+        <ReactMarkdown
+          className="description"
+          source={showSummary ? summary : description}
+        />
+        {showSummary && (
+          <button className="description-button" onClick={showMore}>
+            Show more
+          </button>
+        )}
+        {!showSummary && (
+          <button className="description-button" onClick={showLess}>
+            Show less
+          </button>
+        )}
+      </section>
+      <section className="personalize">
+        <h3>Personlize your info:</h3>
+        <p>
+          Choose your age and sex to see how other people like you were
+          diagnosed and treated.
         </p>
-      </Link>
-      <Link href={`/conditions/[name]/tests`} as={`/conditions/${name}/tests`}>
-        <p className="followup-section">
-          <span>
-            Get <b>tested</b>. Doctors often ordered a{" "}
-            {formatPlurals(testTitles)}.
-          </span>
-          <Chevron />
+        <div className="controls">
+          <div>
+            <button>Men</button>
+            <button>Women</button>
+          </div>
+          <div>
+            <span>Age:</span>
+            <button>18-25</button>
+            <button>25-34</button>
+            <button>35-55</button>
+          </div>
+        </div>
+      </section>
+      <section>
+        <p className="followup-intro">
+          Based on {humanFormat(plm).replace(" ", "")} cases with bladder
+          infection. In this page you can learn more about how they got better:
         </p>
-      </Link>
-      <Link
-        href={`/conditions/[name]/treatment`}
-        as={`/conditions/${name}/treatment`}
-      >
-        <p className="followup-section">
-          <span>
-            Explore <b>treatment</b> options, including which{" "}
-            {treatments[0].title} people like you took.
-          </span>
-          <Chevron />
-        </p>
-      </Link>
-      <Link
-        href={`/conditions/[name]/recovery`}
-        as={`/conditions/${name}/recovery`}
-      >
-        <p className="followup-section">
-          <span>
-            <b>Recovery</b> time for most cases of {title} is a few days.
-          </span>
-          <Chevron />
-        </p>
-      </Link>
+        <h2>Learn More</h2>
+        <Link
+          href={`/conditions/[name]/symptoms`}
+          as={`/conditions/${name}/symptoms`}
+        >
+          <p className="followup-section">
+            <span>
+              Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
+            </span>
+            <Chevron />
+          </p>
+        </Link>
+        <Link
+          href={`/conditions/[name]/tests`}
+          as={`/conditions/${name}/tests`}
+        >
+          <p className="followup-section">
+            <span>
+              Get <b>tested</b>. Doctors often ordered a{" "}
+              {formatPlurals(testTitles)}.
+            </span>
+            <Chevron />
+          </p>
+        </Link>
+        <Link
+          href={`/conditions/[name]/treatment`}
+          as={`/conditions/${name}/treatment`}
+        >
+          <p className="followup-section">
+            <span>
+              Explore <b>treatment</b> options, including which{" "}
+              {treatments[0].title} people like you took.
+            </span>
+            <Chevron />
+          </p>
+        </Link>
+        <Link
+          href={`/conditions/[name]/recovery`}
+          as={`/conditions/${name}/recovery`}
+        >
+          <p className="followup-section">
+            <span>
+              <b>Recovery</b> time for most cases of {title} is a few days.
+            </span>
+            <Chevron />
+          </p>
+        </Link>
+      </section>
     </div>
   );
 };

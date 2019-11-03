@@ -1,9 +1,13 @@
 /** @todo fix fonts */
 @import "../fonts/ploni/stylesheet.css";
 
+body {
+  margin: 0;
+}
+
 .condition {
   font-family: "Ploni AAA", sans-serif;
-  padding: 5px 26px;
+  /* padding: 5px 26px; */
 }
 
 .condition h1 {
@@ -45,6 +49,62 @@
 
 .condition .followup-section .chevron {
   height: 13px;
+  width: 13px;
   display: inline-block;
   margin-left: auto;
+  padding: 6px;
+}
+
+.personalize {
+  padding: 8px 0;
+  background: #2b8fff;
+  color: white;
+}
+
+.personalize h3,
+.personalize p {
+  padding: 0 8px;
+}
+
+.personalize .controls {
+  padding: 0 8px;
+  overflow-x: auto;
+}
+
+.personalize .controls,
+.personalize .controls > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.personalize .controls span,
+.personalize .controls button {
+  font: inherit;
+  padding: 0;
+  color: inherit;
+  padding: 4px 8px;
+  margin-left: 8px;
+  flex-shrink: 0;
+  background: none;
+  outline: none;
+}
+
+.personalize .controls button {
+  border: 1px solid white;
+  border-radius: 2em;
+  cursor: pointer;
+}
+
+.personalize .controls button:first-child {
+  margin-left: 0;
+}
+
+.personalize .controls button.selected {
+  background: white;
+  color: #2b8fff;
+}
+
+section {
+  padding: 8px;
 }

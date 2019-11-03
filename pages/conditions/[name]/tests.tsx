@@ -10,8 +10,10 @@ const TestsPage = ({ name, condition }) => {
   }
   return (
     <div className="condition">
-      <ConditionHeader name={name} title={condition.title} />
-      <Tests />
+      <section>
+        <ConditionHeader name={name} title={condition.title} />
+        <Tests />
+      </section>
     </div>
   );
 };

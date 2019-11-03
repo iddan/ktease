@@ -16,11 +16,13 @@ const SymptomPage = ({ name, condition }: Props) => {
   }
   return (
     <div className="condition">
-      <ConditionHeader name={name} title={condition.title} />
-      <Symptoms
-        concerningSymptoms={condition.concerningSymptoms}
-        potentialSymptoms={condition.potentialSymptoms}
-      />
+      <section>
+        <ConditionHeader name={name} title={condition.title} />
+        <Symptoms
+          concerningSymptoms={condition.concerningSymptoms}
+          potentialSymptoms={condition.potentialSymptoms}
+        />
+      </section>
     </div>
   );
 };

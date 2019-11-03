@@ -10,8 +10,10 @@ const RecoveryPage = ({ name, condition }) => {
   }
   return (
     <div className="condition">
-      <ConditionHeader name={name} title={condition.title} />
-      <Recovery />
+      <section>
+        <ConditionHeader name={name} title={condition.title} />
+        <Recovery />
+      </section>
     </div>
   );
 };
