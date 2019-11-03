@@ -8,10 +8,12 @@ const TreatmentPage = ({ condition }) => {
   if (!condition) {
     return <ConditionNotFound name={name} />;
   }
-  <div className="treatment">
-    <ConditionHeader title={condition.title} />
-    <Treatment />
-  </div>;
+  return (
+    <div className="treatment">
+      <ConditionHeader title={condition.title} />
+      <Treatment />
+    </div>
+  );
 };
 
 TreatmentPage.getInitialProps = context => {
