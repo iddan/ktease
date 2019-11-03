@@ -149,6 +149,11 @@ const Condition = ({ name, condition }: Props) => {
   }, [showSummary]);
   const [biologicalSex, setBiologicalSex] = useState();
   const [age, setAge] = useState(defaultAge);
+  const [
+    personalizedData,
+    setPersonalizedData
+  ] = useState<PersonalizedConditionInfo | null>(null);
+  const [loading, setLoading] = useState(false);
   const handleBiologicalSexChange = useCallback(
     value => {
       setBiologicalSex(value);
@@ -161,13 +166,18 @@ const Condition = ({ name, condition }: Props) => {
     },
     [setAge]
   );
-  const [
-    personalizedData,
-    setPersonalizedData
-  ] = useState<PersonalizedConditionInfo | null>(null);
 
   useEffect(() => {
-    setPersonalizedData(getPersonalizedCondition(name));
+    setLoading(true);
+    getPersonalizedCondition(name)
+      .then(data => {
+        setPersonalizedData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
   }, [setPersonalizedData]);
 
   return (
@@ -221,9 +231,8 @@ const Condition = ({ name, condition }: Props) => {
         </div>
       </section>
       <section>
-        {!personalizedData ? (
-          "Loading ..."
-        ) : (
+        {loading && "Loading ..."}
+        {personalizedData && (
           <PersonalizedConditionsInfo
             title={title}
             personalizedData={personalizedData}

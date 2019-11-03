@@ -43,15 +43,15 @@ export function getCondition(name: string): ConditionInfo | undefined {
 
 export function getPersonalizedCondition(
   name: string
-): PersonalizedConditionInfo | undefined {
-  return {
+): Promise<PersonalizedConditionInfo | undefined> {
+  return Promise.resolve({
     plm: 42,
     potentialSymptoms: [],
     concerningSymptoms: [],
     tests: [],
     treatments: [],
     recovery: null
-  };
+  });
 }
 
 export function listConditions(): string[] {
