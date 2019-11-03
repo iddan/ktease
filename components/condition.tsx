@@ -48,11 +48,13 @@ const BiologicalSexButton = ({ value, title, selected, onSelect }) => {
 
 const ageOptions = [];
 
-const currentYear = new Date().getFullYear();
+// const currentYear = new Date().getFullYear();
 
-for (let i = currentYear - 120; i < currentYear - 18; i++) {
+for (let i = 18; i < 120; i++) {
   ageOptions.push(i);
 }
+
+const defaultAge = 30;
 
 const Condition = ({ name, condition }: Props) => {
   const {
@@ -72,7 +74,7 @@ const Condition = ({ name, condition }: Props) => {
     setShowSummary(false);
   }, [showSummary]);
   const [biologicalSex, setBiologicalSex] = useState();
-  const [age, setAge] = useState();
+  const [age, setAge] = useState(defaultAge);
   const handleBiologicalSexChange = useCallback(
     value => {
       setBiologicalSex(value);
