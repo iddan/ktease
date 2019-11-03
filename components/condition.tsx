@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import Link from "next/link";
 import humanFormat from "human-format";
-import chevron from "./chevron.svg";
+import Chevron from "./chevron";
 import { ConditionInfo } from "../types";
 import "./condition.css";
 
@@ -14,10 +14,6 @@ const formatPlurals = (items: string[]): string => {
   return `${items.slice(0, items.length - 1).join(", ")} and ${
     items[items.length - 1]
   }`;
-};
-
-const Chevron = () => {
-  return <img className="chevron" src={chevron} />;
 };
 
 const Condition = ({ name, condition }: Props) => {
