@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import Link from "next/link";
 import humanFormat from "human-format";
+import ReactMarkdown from "react-markdown";
 import Chevron from "./chevron";
 import { ConditionInfo } from "../types";
 import "./condition.css";
@@ -38,7 +39,10 @@ const Condition = ({ name, condition }: Props) => {
   return (
     <div className="condition">
       <h1 className="title">{title}</h1>
-      <p className="description">{showSummary ? summary : description}</p>
+      <ReactMarkdown
+        className="description"
+        source={showSummary ? summary : description}
+      />
       {showSummary && (
         <button className="description-button" onClick={showMore}>
           Show more
