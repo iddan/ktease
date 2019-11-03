@@ -3,14 +3,13 @@ import humanFormat from "human-format";
 import chevron from "./chevron.svg";
 import "./condition.css";
 
-type Props =
-  | { name: string; summary: undefined; description: undefined; plm: undefined }
-  | {
-      name: string;
-      summary: string;
-      description: string;
-      plm: number;
-    };
+type Props = {
+  name: string;
+  title: string;
+  summary: string;
+  description: string;
+  plm: number;
+};
 
 const formatPlurals = (items: string[]) => {
   return `${items.slice(0, items.length - 1).join(", ")} and ${
@@ -22,7 +21,7 @@ const Chevron = () => {
   return <img className="chevron" src={chevron} />;
 };
 
-const Condition = ({ name, summary, description, plm }: Props) => {
+const Condition = ({ name, title, summary, description, plm }: Props) => {
   const [showSummary, setShowSummary] = useState(true);
   const showLess = useCallback(() => {
     setShowSummary(true);
@@ -30,19 +29,12 @@ const Condition = ({ name, summary, description, plm }: Props) => {
   const showMore = useCallback(() => {
     setShowSummary(false);
   }, [showSummary]);
-  if (summary === undefined) {
-    return (
-      <div className="condition">
-        <h1 className="title">Condition {name} was not found</h1>
-      </div>
-    );
-  }
   const symptoms = ["Urinary Frequency", "Urinary Urgency"];
   const tests = ["Urine Analysis", "Urine Culture"];
   const treatments = ["antibiotics"];
   return (
     <div className="condition">
-      <h1 className="title">{name}</h1>
+      <h1 className="title">{title}</h1>
       <p className="description">{showSummary ? summary : description}</p>
       {showSummary && (
         <button className="description-button" onClick={showMore}>
@@ -79,7 +71,7 @@ const Condition = ({ name, summary, description, plm }: Props) => {
       </p>
       <p className="followup-section">
         <span>
-          <b>Recovery</b> time for most cases of {name} is a few days.
+          <b>Recovery</b> time for most cases of {title} is a few days.
         </span>
         <Chevron />
       </p>

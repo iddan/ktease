@@ -1,9 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import Condition from "../../components/condition";
+import ConditionNotFound from "../../components/condition-not-found";
 
 type ConditionData = {
-  name: string;
+  title: string;
   summary: string;
   description: string;
   plm: number;
@@ -11,7 +12,7 @@ type ConditionData = {
 
 const conditionToData: { [name: string]: ConditionData } = {
   migrane: {
-    name: "Migrane",
+    title: "Migrane",
     summary: "Migrane is when your head aches and your eyes are flashing.",
     description:
       "Migrane is when your head aches and your eyes are flashing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
@@ -19,26 +20,31 @@ const conditionToData: { [name: string]: ConditionData } = {
   }
 };
 
-function ConditionPage({ name, summary, description, plm }) {
+function ConditionPage({ name, title, summary, description, plm }) {
   return (
     <>
       <Head>
-        <title>K Health - {name}</title>
+        <title>K Health - {title || name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Condition
-        name={name}
-        summary={summary}
-        description={description}
-        plm={plm}
-      />
+      {title === undefined ? (
+        <ConditionNotFound name={name} />
+      ) : (
+        <Condition
+          name={name}
+          title={title}
+          summary={summary}
+          description={description}
+          plm={plm}
+        />
+      )}
     </>
   );
 }
 
 ConditionPage.getInitialProps = context => {
   const { name } = context.query;
-  return conditionToData[name] || { name };
+  return { name, ...conditionToData[name] };
 };
 
 export default ConditionPage;
