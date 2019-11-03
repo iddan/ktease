@@ -1,13 +1,7 @@
 import React from "react";
-import { ConcerningSymptom, PotentialSymptom } from "../types";
 import "./condition.css";
 
-type Props = {
-  concerningSymptoms: ConcerningSymptom[];
-  potentialSymptoms: PotentialSymptom[];
-};
-
-const Symptoms = ({ concerningSymptoms, potentialSymptoms }: Props) => {
+const Symptoms = () => {
   return (
     <div>
       <h2>Concerning Symptoms</h2>

@@ -18,10 +18,7 @@ const SymptomPage = ({ name, condition }: Props) => {
     <div className="condition">
       <section>
         <ConditionHeader name={name} title={condition.title} />
-        <Symptoms
-          concerningSymptoms={condition.concerningSymptoms}
-          potentialSymptoms={condition.potentialSymptoms}
-        />
+        <Symptoms />
       </section>
     </div>
   );

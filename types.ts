@@ -19,17 +19,11 @@ export type ConditionInfo = Titled & {
   /** Short description of the condition */
   summary: string;
   /** 30seconds description of the condition */
-
   description: string;
-  /** Number of people with cases including this condition in K */
-  plm?: number;
-  potentialSymptoms?: PotentialSymptom[];
-  concerningSymptoms?: ConcerningSymptom[];
-  tests?: Test[];
-  treatments?: Treatment[];
 };
 
 export type PersonalizedConditionInfo = {
+  /** Number of people with cases including this condition in K */
   plm: number;
   potentialSymptoms: PotentialSymptom[];
   concerningSymptoms: ConcerningSymptom[];
