@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import Link from "next/link";
 import humanFormat from "human-format";
 import chevron from "./chevron.svg";
 import "./condition.css";
@@ -50,31 +51,39 @@ const Condition = ({ name, title, summary, description, plm }: Props) => {
         Based on {humanFormat(plm).replace(" ", "")} cases with bladder
         infection. In this page you can learn more about how they got better:
       </p>
-      <p className="followup-section">
-        <span>
-          Watch for <b>symptoms</b> like {formatPlurals(symptoms)}.
-        </span>
-        <Chevron />
-      </p>
-      <p className="followup-section">
-        <span>
-          Get <b>tested</b>. Doctors often ordered a {formatPlurals(tests)}.
-        </span>
-        <Chevron />
-      </p>
-      <p className="followup-section">
-        <span>
-          Explore <b>treatment</b> options, including which {treatments[0]}{" "}
-          people like you took.
-        </span>
-        <Chevron />
-      </p>
-      <p className="followup-section">
-        <span>
-          <b>Recovery</b> time for most cases of {title} is a few days.
-        </span>
-        <Chevron />
-      </p>
+      <Link href={`/conditions/${name}/symptoms`}>
+        <p className="followup-section">
+          <span>
+            Watch for <b>symptoms</b> like {formatPlurals(symptoms)}.
+          </span>
+          <Chevron />
+        </p>
+      </Link>
+      <Link href={`/conditions/${name}/tests`}>
+        <p className="followup-section">
+          <span>
+            Get <b>tested</b>. Doctors often ordered a {formatPlurals(tests)}.
+          </span>
+          <Chevron />
+        </p>
+      </Link>
+      <Link href={`/conditions/${name}/treatments`}>
+        <p className="followup-section">
+          <span>
+            Explore <b>treatment</b> options, including which {treatments[0]}{" "}
+            people like you took.
+          </span>
+          <Chevron />
+        </p>
+      </Link>
+      <Link href={`/conditions/${name}/conditions`}>
+        <p className="followup-section">
+          <span>
+            <b>Recovery</b> time for most cases of {title} is a few days.
+          </span>
+          <Chevron />
+        </p>
+      </Link>
     </div>
   );
 };
