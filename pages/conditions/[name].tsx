@@ -7,7 +7,14 @@ import data from "../../data.json";
 
 const mockCondition = {
   plm: 3000000,
-  potentialSymptoms: [],
+  potentialSymptoms: [
+    {
+      title: "Urinary frequency"
+    },
+    {
+      title: "Urinary urgency"
+    }
+  ],
   concerningSymptoms: [
     { title: "Urinary Frequency" },
     { title: "Urinary Urgency" }
