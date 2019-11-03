@@ -4,7 +4,7 @@ import Recovery from "../../../components/recovery";
 import { getCondition } from "../../../conditions.service";
 import ConditionNotFound from "../../../components/condition-not-found";
 
-const RecoveryPage = ({ condition }) => {
+const RecoveryPage = ({ name, condition }) => {
   if (!condition) {
     return <ConditionNotFound name={name} />;
   }

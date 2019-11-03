@@ -4,7 +4,7 @@ import Tests from "../../../components/tests";
 import { getCondition } from "../../../conditions.service";
 import ConditionNotFound from "../../../components/condition-not-found";
 
-const TestsPage = ({ condition }) => {
+const TestsPage = ({ name, condition }) => {
   if (!condition) {
     return <ConditionNotFound name={name} />;
   }
