@@ -86,8 +86,8 @@ const Condition = ({ name, condition }: Props) => {
         </p>
       </Link>
       <Link
-        href={`/conditions/[name]/treatments`}
-        as={`/conditions/${name}/treatments`}
+        href={`/conditions/[name]/treatment`}
+        as={`/conditions/${name}/treatment`}
       >
         <p className="followup-section">
           <span>
