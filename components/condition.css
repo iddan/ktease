@@ -1,0 +1,18 @@
+/** @todo fix fonts */
+@import "../fonts/ploni/stylesheet.css";
+
+.condition {
+  font-family: "Ploni AAA", sans-serif;
+  padding: 5px 26px;
+}
+
+.condition .title {
+  color: #00406b;
+  font-weight: 500;
+  font-size: 1.5em;
+  line-height: 1.16em;
+}
+
+.condition .description {
+  color: #00406b;
+}
