@@ -46,6 +46,14 @@ const BiologicalSexButton = ({ value, title, selected, onSelect }) => {
   );
 };
 
+const ageOptions = [];
+
+const currentYear = new Date().getFullYear();
+
+for (let i = currentYear - 120; i < currentYear - 18; i++) {
+  ageOptions.push(i);
+}
+
 const Condition = ({ name, condition }: Props) => {
   const {
     title,
@@ -64,9 +72,19 @@ const Condition = ({ name, condition }: Props) => {
     setShowSummary(false);
   }, [showSummary]);
   const [biologicalSex, setBiologicalSex] = useState();
-  const handleBiologicalSexChange = useCallback((value) => {
-    setBiologicalSex(value);
-  }, [setBiologicalSex]);
+  const [age, setAge] = useState();
+  const handleBiologicalSexChange = useCallback(
+    value => {
+      setBiologicalSex(value);
+    },
+    [setBiologicalSex]
+  );
+  const handleAgeChange = useCallback(
+    event => {
+      setAge(event.target.value);
+    },
+    [setAge]
+  );
   const symptomTitles = potentialSymptoms.map(symptom => symptom.title);
   const testTitles = tests.map(test => test.title);
   return (
@@ -111,9 +129,11 @@ const Condition = ({ name, condition }: Props) => {
           </div>
           <div>
             <span>Age:</span>
-            <button>18-25</button>
-            <button>25-34</button>
-            <button>35-55</button>
+            <select onChange={handleAgeChange} value={age}>
+              {ageOptions.map(option => (
+                <option>{option}</option>
+              ))}
+            </select>
           </div>
         </div>
       </section>

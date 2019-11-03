@@ -105,6 +105,15 @@ body {
   color: #2b8fff;
 }
 
+.personalize .controls select {
+  color: white;
+  font: inherit;
+  border: 0;
+  border-bottom: 1px solid white;
+  background: none;
+  outline: none;
+}
+
 section {
   padding: 8px;
 }
