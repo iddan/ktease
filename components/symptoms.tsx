@@ -2,8 +2,8 @@ import React from "react";
 import { ConcerningSymptom, PotentialSymptom } from "../types";
 
 type Props = {
-  concerningSymptoms: ConcerningSymptom;
-  potentialSymptoms: PotentialSymptom;
+  concerningSymptoms: ConcerningSymptom[];
+  potentialSymptoms: PotentialSymptom[];
 };
 
 const Symptoms = ({ concerningSymptoms, potentialSymptoms }: Props) => {

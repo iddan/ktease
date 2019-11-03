@@ -63,7 +63,7 @@ const Condition = ({ name, condition }: Props) => {
         Based on {humanFormat(plm).replace(" ", "")} cases with bladder
         infection. In this page you can learn more about how they got better:
       </p>
-      <Link href={`/conditions/${name}/symptoms`}>
+      <Link href={`/conditions/symptoms`} as={`/conditions/${name}/symptoms`}>
         <p className="followup-section">
           <span>
             Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
@@ -71,7 +71,7 @@ const Condition = ({ name, condition }: Props) => {
           <Chevron />
         </p>
       </Link>
-      <Link href={`/conditions/${name}/tests`}>
+      <Link href={`/conditions/tests`} as={`/conditions/${name}/tests`}>
         <p className="followup-section">
           <span>
             Get <b>tested</b>. Doctors often ordered a{" "}
@@ -80,7 +80,10 @@ const Condition = ({ name, condition }: Props) => {
           <Chevron />
         </p>
       </Link>
-      <Link href={`/conditions/${name}/treatments`}>
+      <Link
+        href={`/conditions/treatments`}
+        as={`/conditions/${name}/treatments`}
+      >
         <p className="followup-section">
           <span>
             Explore <b>treatment</b> options, including which{" "}
@@ -89,7 +92,7 @@ const Condition = ({ name, condition }: Props) => {
           <Chevron />
         </p>
       </Link>
-      <Link href={`/conditions/${name}/recovery`}>
+      <Link href={`/conditions/recovery`} as={`/conditions/${name}/recovery`}>
         <p className="followup-section">
           <span>
             <b>Recovery</b> time for most cases of {title} is a few days.
