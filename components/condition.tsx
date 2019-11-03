@@ -1,11 +1,12 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import humanFormat from "human-format";
 import ReactMarkdown from "react-markdown";
 import Chevron from "./chevron";
 import ConditionHeader from "./condition-header";
-import { ConditionInfo } from "../types";
+import { ConditionInfo, PersonalizedConditionInfo } from "../types";
 import "./condition.css";
+import { getPersonalizedCondition } from "../conditions.service";
 
 type Props = {
   name: string;
@@ -56,16 +57,89 @@ for (let i = 18; i < 120; i++) {
 
 const defaultAge = 30;
 
-const Condition = ({ name, condition }: Props) => {
+const PersonalizedConditionsInfo = ({
+  title,
+  personalizedData
+}: {
+  title: string;
+  personalizedData: PersonalizedConditionInfo;
+}) => {
   const {
-    title,
-    summary,
-    description,
-    plm,
-    potentialSymptoms,
+    concerningSymptoms,
     tests,
-    treatments
-  } = condition;
+    plm,
+    treatments,
+    recovery
+  } = personalizedData;
+  const symptomTitles = concerningSymptoms.map(symptom => symptom.title);
+  const testTitles = tests.map(test => test.title);
+  return (
+    <>
+      <p className="followup-intro">
+        Based on {humanFormat(plm).replace(" ", "")} cases with bladder
+        infection. In this page you can learn more about how they got better:
+      </p>
+      <h2>Learn More</h2>
+      {symptomTitles.length !== 0 && (
+        <Link
+          href={`/conditions/[name]/symptoms`}
+          as={`/conditions/${name}/symptoms`}
+        >
+          <p className="followup-section">
+            <span>
+              Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
+            </span>
+            <Chevron />
+          </p>
+        </Link>
+      )}
+      {tests.length !== 0 && (
+        <Link
+          href={`/conditions/[name]/tests`}
+          as={`/conditions/${name}/tests`}
+        >
+          <p className="followup-section">
+            <span>
+              Get <b>tested</b>. Doctors often ordered a{" "}
+              {formatPlurals(testTitles)}.
+            </span>
+            <Chevron />
+          </p>
+        </Link>
+      )}
+      {treatments.length !== 0 && (
+        <Link
+          href={`/conditions/[name]/treatment`}
+          as={`/conditions/${name}/treatment`}
+        >
+          <p className="followup-section">
+            <span>
+              Explore <b>treatment</b> options, including which{" "}
+              {treatments[0].title} people like you took.
+            </span>
+            <Chevron />
+          </p>
+        </Link>
+      )}
+      {recovery && (
+        <Link
+          href={`/conditions/[name]/recovery`}
+          as={`/conditions/${name}/recovery`}
+        >
+          <p className="followup-section">
+            <span>
+              <b>Recovery</b> time for most cases of {title} is a few days.
+            </span>
+            <Chevron />
+          </p>
+        </Link>
+      )}
+    </>
+  );
+};
+
+const Condition = ({ name, condition }: Props) => {
+  const { title, summary, description } = condition;
   const [showSummary, setShowSummary] = useState(true);
   const showLess = useCallback(() => {
     setShowSummary(true);
@@ -87,8 +161,15 @@ const Condition = ({ name, condition }: Props) => {
     },
     [setAge]
   );
-  const symptomTitles = potentialSymptoms.map(symptom => symptom.title);
-  const testTitles = tests.map(test => test.title);
+  const [
+    personalizedData,
+    setPersonalizedData
+  ] = useState<PersonalizedConditionInfo | null>(null);
+
+  useEffect(() => {
+    setPersonalizedData(getPersonalizedCondition(name));
+  }, [setPersonalizedData]);
+
   return (
     <div className="condition">
       <section>
@@ -140,63 +221,13 @@ const Condition = ({ name, condition }: Props) => {
         </div>
       </section>
       <section>
-        {!plm ? (
+        {!personalizedData ? (
           "Loading ..."
         ) : (
-          <>
-            <p className="followup-intro">
-              Based on {humanFormat(plm).replace(" ", "")} cases with bladder
-              infection. In this page you can learn more about how they got
-              better:
-            </p>
-            <h2>Learn More</h2>
-            <Link
-              href={`/conditions/[name]/symptoms`}
-              as={`/conditions/${name}/symptoms`}
-            >
-              <p className="followup-section">
-                <span>
-                  Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
-                </span>
-                <Chevron />
-              </p>
-            </Link>
-            <Link
-              href={`/conditions/[name]/tests`}
-              as={`/conditions/${name}/tests`}
-            >
-              <p className="followup-section">
-                <span>
-                  Get <b>tested</b>. Doctors often ordered a{" "}
-                  {formatPlurals(testTitles)}.
-                </span>
-                <Chevron />
-              </p>
-            </Link>
-            <Link
-              href={`/conditions/[name]/treatment`}
-              as={`/conditions/${name}/treatment`}
-            >
-              <p className="followup-section">
-                <span>
-                  Explore <b>treatment</b> options, including which{" "}
-                  {treatments[0].title} people like you took.
-                </span>
-                <Chevron />
-              </p>
-            </Link>
-            <Link
-              href={`/conditions/[name]/recovery`}
-              as={`/conditions/${name}/recovery`}
-            >
-              <p className="followup-section">
-                <span>
-                  <b>Recovery</b> time for most cases of {title} is a few days.
-                </span>
-                <Chevron />
-              </p>
-            </Link>
-          </>
+          <PersonalizedConditionsInfo
+            title={title}
+            personalizedData={personalizedData}
+          />
         )}
       </section>
     </div>

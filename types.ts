@@ -11,6 +11,8 @@ export type Test = Titled & {};
 
 export type Treatment = Titled & {};
 
+type Recovery = {};
+
 export type ConditionInfo = Titled & {
   /** URL friendly name of the condition in kebab case */
   name: string;
@@ -25,4 +27,13 @@ export type ConditionInfo = Titled & {
   concerningSymptoms?: ConcerningSymptom[];
   tests?: Test[];
   treatments?: Treatment[];
+};
+
+export type PersonalizedConditionInfo = {
+  plm: number;
+  potentialSymptoms: PotentialSymptom[];
+  concerningSymptoms: ConcerningSymptom[];
+  tests: Test[];
+  treatments: Treatment[];
+  recovery: Recovery | null;
 };

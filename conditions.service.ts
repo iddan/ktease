@@ -1,4 +1,4 @@
-import { ConditionInfo } from "./types";
+import { ConditionInfo, PersonalizedConditionInfo } from "./types";
 import data from "./data";
 
 const mockCondition = {
@@ -39,6 +39,19 @@ for (const condition of data) {
 
 export function getCondition(name: string): ConditionInfo | undefined {
   return conditionToData[name];
+}
+
+export function getPersonalizedCondition(
+  name: string
+): PersonalizedConditionInfo | undefined {
+  return {
+    plm: 42,
+    potentialSymptoms: [],
+    concerningSymptoms: [],
+    tests: [],
+    treatments: [],
+    recovery: null
+  };
 }
 
 export function listConditions(): string[] {
