@@ -64,7 +64,7 @@ const Condition = ({ name, condition }: Props) => {
         Based on {humanFormat(plm).replace(" ", "")} cases with bladder
         infection. In this page you can learn more about how they got better:
       </p>
-      <h2>Common Symptoms</h2>
+      <h2>Learn More</h2>
       <Link
         href={`/conditions/[name]/symptoms`}
         as={`/conditions/${name}/symptoms`}

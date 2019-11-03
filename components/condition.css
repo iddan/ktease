@@ -6,11 +6,17 @@
   padding: 5px 26px;
 }
 
-.condition .title {
+.condition h1 {
   color: #00406b;
   font-weight: 500;
   font-size: 1.5em;
   line-height: 1.16em;
+}
+
+.condition h2 {
+  font-weight: 600;
+  font-size: 1.15em;
+  line-height: 1.75em;
 }
 
 .condition .description {
