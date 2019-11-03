@@ -2,7 +2,7 @@ import { ConditionInfo } from "./types";
 import data from "./data";
 
 const mockCondition = {
-  plm: 3000000,
+  // plm: 3000000,
   potentialSymptoms: [
     {
       title: "Urinary frequency"

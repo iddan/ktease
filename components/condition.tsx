@@ -40,7 +40,7 @@ const BiologicalSexButton = ({ value, title, selected, onSelect }) => {
     onSelect(value);
   }, [value]);
   return (
-    <button onClick={handleClick} className={selected && "selected"}>
+    <button onClick={handleClick} className={selected ? "selected" : ""}>
       {title}
     </button>
   );
@@ -131,64 +131,71 @@ const Condition = ({ name, condition }: Props) => {
             <span>Age:</span>
             <select onChange={handleAgeChange} value={age}>
               {ageOptions.map(option => (
-                <option>{option}</option>
+                <option key={`${option}`}>{option}</option>
               ))}
             </select>
           </div>
         </div>
       </section>
       <section>
-        <p className="followup-intro">
-          Based on {humanFormat(plm).replace(" ", "")} cases with bladder
-          infection. In this page you can learn more about how they got better:
-        </p>
-        <h2>Learn More</h2>
-        <Link
-          href={`/conditions/[name]/symptoms`}
-          as={`/conditions/${name}/symptoms`}
-        >
-          <p className="followup-section">
-            <span>
-              Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
-            </span>
-            <Chevron />
-          </p>
-        </Link>
-        <Link
-          href={`/conditions/[name]/tests`}
-          as={`/conditions/${name}/tests`}
-        >
-          <p className="followup-section">
-            <span>
-              Get <b>tested</b>. Doctors often ordered a{" "}
-              {formatPlurals(testTitles)}.
-            </span>
-            <Chevron />
-          </p>
-        </Link>
-        <Link
-          href={`/conditions/[name]/treatment`}
-          as={`/conditions/${name}/treatment`}
-        >
-          <p className="followup-section">
-            <span>
-              Explore <b>treatment</b> options, including which{" "}
-              {treatments[0].title} people like you took.
-            </span>
-            <Chevron />
-          </p>
-        </Link>
-        <Link
-          href={`/conditions/[name]/recovery`}
-          as={`/conditions/${name}/recovery`}
-        >
-          <p className="followup-section">
-            <span>
-              <b>Recovery</b> time for most cases of {title} is a few days.
-            </span>
-            <Chevron />
-          </p>
-        </Link>
+        {!plm ? (
+          "Loading ..."
+        ) : (
+          <>
+            <p className="followup-intro">
+              Based on {humanFormat(plm).replace(" ", "")} cases with bladder
+              infection. In this page you can learn more about how they got
+              better:
+            </p>
+            <h2>Learn More</h2>
+            <Link
+              href={`/conditions/[name]/symptoms`}
+              as={`/conditions/${name}/symptoms`}
+            >
+              <p className="followup-section">
+                <span>
+                  Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
+                </span>
+                <Chevron />
+              </p>
+            </Link>
+            <Link
+              href={`/conditions/[name]/tests`}
+              as={`/conditions/${name}/tests`}
+            >
+              <p className="followup-section">
+                <span>
+                  Get <b>tested</b>. Doctors often ordered a{" "}
+                  {formatPlurals(testTitles)}.
+                </span>
+                <Chevron />
+              </p>
+            </Link>
+            <Link
+              href={`/conditions/[name]/treatment`}
+              as={`/conditions/${name}/treatment`}
+            >
+              <p className="followup-section">
+                <span>
+                  Explore <b>treatment</b> options, including which{" "}
+                  {treatments[0].title} people like you took.
+                </span>
+                <Chevron />
+              </p>
+            </Link>
+            <Link
+              href={`/conditions/[name]/recovery`}
+              as={`/conditions/${name}/recovery`}
+            >
+              <p className="followup-section">
+                <span>
+                  <b>Recovery</b> time for most cases of {title} is a few days.
+                </span>
+                <Chevron />
+              </p>
+            </Link>
+          </>
+        )}
       </section>
     </div>
   );

@@ -20,9 +20,9 @@ export type ConditionInfo = Titled & {
 
   description: string;
   /** Number of people with cases including this condition in K */
-  plm: number;
-  potentialSymptoms: PotentialSymptom[];
-  concerningSymptoms: ConcerningSymptom[];
-  tests: Test[];
-  treatments: Treatment[];
+  plm?: number;
+  potentialSymptoms?: PotentialSymptom[];
+  concerningSymptoms?: ConcerningSymptom[];
+  tests?: Test[];
+  treatments?: Treatment[];
 };
