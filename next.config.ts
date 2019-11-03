@@ -16,6 +16,7 @@ module.exports = withFonts(
 
 module.exports.exportPathMap = () => {
   const conditions = listConditions();
+  /** @todo sub pages */
   const pages = conditions.reduce(
     (pages, name) => ({
       ...pages,
