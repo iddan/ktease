@@ -7,11 +7,15 @@ const conditionCodes = listConditions();
 const Home = () => (
   <div>
     Conditions:{" "}
-    {conditionCodes.map(code => (
-      <Link href={`/conditions/[id]`} as={`/conditions/${code}`}>
-        {code}
-      </Link>
-    ))}
+    <ul>
+      {conditionCodes.map(code => (
+        <li>
+          <Link href={`/conditions/[id]`} as={`/conditions/${code}`}>
+            <a>{code}</a>
+          </Link>
+        </li>
+      ))}
+    </ul>
   </div>
 );
 
