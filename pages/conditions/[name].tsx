@@ -3,43 +3,7 @@ import Head from "next/head";
 import Condition from "../../components/condition";
 import ConditionNotFound from "../../components/condition-not-found";
 import { ConditionInfo } from "../../types";
-import data from "../../data.json";
-
-const mockCondition = {
-  plm: 3000000,
-  potentialSymptoms: [
-    {
-      title: "Urinary frequency"
-    },
-    {
-      title: "Urinary urgency"
-    }
-  ],
-  concerningSymptoms: [
-    { title: "Urinary Frequency" },
-    { title: "Urinary Urgency" }
-  ],
-  tests: [
-    {
-      title: "Urine Analysis"
-    },
-    { title: "Urine Culture" }
-  ],
-  treatments: [
-    {
-      title: "antibiotics"
-    }
-  ]
-};
-
-const conditionToData: { [name: string]: ConditionInfo } = {};
-
-for (const condition of data) {
-  conditionToData[condition.name] = {
-    ...condition,
-    ...mockCondition
-  };
-}
+import { getCondition } from "../../conditions.service";
 
 type Props = {
   name: string;
@@ -64,8 +28,7 @@ function ConditionPage({ name, condition }: Props) {
 
 ConditionPage.getInitialProps = context => {
   const { name } = context.query;
-  const condition = conditionToData[name];
-  return { name, condition };
+  return { name, condition: getCondition(name) };
 };
 
 export default ConditionPage;

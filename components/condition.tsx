@@ -3,6 +3,7 @@ import Link from "next/link";
 import humanFormat from "human-format";
 import ReactMarkdown from "react-markdown";
 import Chevron from "./chevron";
+import ConditionHeader from "./condition-header";
 import { ConditionInfo } from "../types";
 import "./condition.css";
 
@@ -44,7 +45,7 @@ const Condition = ({ name, condition }: Props) => {
   const testTitles = tests.map(test => test.title);
   return (
     <div className="condition">
-      <h1 className="title">{title}</h1>
+      <ConditionHeader title={title} />
       <ReactMarkdown
         className="description"
         source={showSummary ? summary : description}
@@ -63,7 +64,10 @@ const Condition = ({ name, condition }: Props) => {
         Based on {humanFormat(plm).replace(" ", "")} cases with bladder
         infection. In this page you can learn more about how they got better:
       </p>
-      <Link href={`/conditions/symptoms`} as={`/conditions/${name}/symptoms`}>
+      <Link
+        href={`/conditions/[name]/symptoms`}
+        as={`/conditions/${name}/symptoms`}
+      >
         <p className="followup-section">
           <span>
             Watch for <b>symptoms</b> like {formatPlurals(symptomTitles)}.
@@ -71,7 +75,7 @@ const Condition = ({ name, condition }: Props) => {
           <Chevron />
         </p>
       </Link>
-      <Link href={`/conditions/tests`} as={`/conditions/${name}/tests`}>
+      <Link href={`/conditions/[name]/tests`} as={`/conditions/${name}/tests`}>
         <p className="followup-section">
           <span>
             Get <b>tested</b>. Doctors often ordered a{" "}
@@ -81,7 +85,7 @@ const Condition = ({ name, condition }: Props) => {
         </p>
       </Link>
       <Link
-        href={`/conditions/treatments`}
+        href={`/conditions/[name]/treatments`}
         as={`/conditions/${name}/treatments`}
       >
         <p className="followup-section">
@@ -92,7 +96,10 @@ const Condition = ({ name, condition }: Props) => {
           <Chevron />
         </p>
       </Link>
-      <Link href={`/conditions/recovery`} as={`/conditions/${name}/recovery`}>
+      <Link
+        href={`/conditions/[name]/recovery`}
+        as={`/conditions/${name}/recovery`}
+      >
         <p className="followup-section">
           <span>
             <b>Recovery</b> time for most cases of {title} is a few days.
