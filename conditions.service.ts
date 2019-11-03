@@ -40,3 +40,7 @@ for (const condition of data) {
 export function getCondition(name: string): ConditionInfo | undefined {
   return conditionToData[name];
 }
+
+export function listConditions(): string[] {
+  return Object.keys(conditionToData);
+}

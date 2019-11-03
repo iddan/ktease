@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import { listConditions } from "../conditions.service";
 
-const conditionCodes: string[] = ["10"];
+const conditionCodes = listConditions();
 
 const Home = () => (
   <div>
