@@ -10,7 +10,7 @@ const RecoveryPage = ({ name, condition }) => {
   }
   return (
     <div className="condition">
-      <ConditionHeader title={condition.title} />
+      <ConditionHeader name={name} title={condition.title} />
       <Recovery />
     </div>
   );

@@ -9,8 +9,8 @@ const TreatmentPage = ({ condition }) => {
     return <ConditionNotFound name={name} />;
   }
   return (
-    <div className="treatment">
-      <ConditionHeader title={condition.title} />
+    <div className="condition">
+      <ConditionHeader name={name} title={condition.title} />
       <Treatment />
     </div>
   );

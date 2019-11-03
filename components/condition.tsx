@@ -45,7 +45,7 @@ const Condition = ({ name, condition }: Props) => {
   const testTitles = tests.map(test => test.title);
   return (
     <div className="condition">
-      <ConditionHeader title={title} />
+      <ConditionHeader name={name} title={title} />
       <ReactMarkdown
         className="description"
         source={showSummary ? summary : description}

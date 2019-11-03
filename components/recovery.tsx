@@ -1,4 +1,5 @@
 import React from "react";
+import "./condition.css";
 
 const Recovery = () => {
   return (

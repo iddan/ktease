@@ -1,5 +1,6 @@
 import React from "react";
 import { ConcerningSymptom, PotentialSymptom } from "../types";
+import "./condition.css";
 
 type Props = {
   concerningSymptoms: ConcerningSymptom[];
