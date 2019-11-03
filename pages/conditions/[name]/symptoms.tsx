@@ -11,18 +11,17 @@ type Props = {
 };
 
 const SymptomPage = ({ name, condition }: Props) => {
-  console.log(name);
   if (!condition) {
     return <ConditionNotFound name={name} />;
   }
   return (
-    <>
+    <div className="condition">
       <ConditionHeader title={condition.title} />
       <Symptoms
         concerningSymptoms={condition.concerningSymptoms}
         potentialSymptoms={condition.potentialSymptoms}
       />
-    </>
+    </div>
   );
 };
 
