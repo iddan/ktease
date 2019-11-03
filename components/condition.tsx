@@ -12,7 +12,7 @@ type Props = {
   plm: number;
 };
 
-const formatPlurals = (items: string[]) => {
+const formatPlurals = (items: string[]): string => {
   return `${items.slice(0, items.length - 1).join(", ")} and ${
     items[items.length - 1]
   }`;
