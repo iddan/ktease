@@ -7,6 +7,7 @@ import ConditionHeader from "./condition-header";
 import { ConditionInfo, PersonalizedConditionInfo } from "../types";
 import "./condition.css";
 import { getPersonalizedCondition } from "../conditions.service";
+import logo from "../logo.webp";
 
 type Props = {
   name: string;
@@ -238,6 +239,12 @@ const Condition = ({ name, condition }: Props) => {
             personalizedData={personalizedData}
           />
         )}
+      </section>
+      <section className="brand">
+        <a href="http://khealth.ai">
+          <img width={50} src={logo} />
+          <p>This information is provided by K Health</p>
+        </a>
       </section>
     </div>
   );

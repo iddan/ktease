@@ -123,3 +123,14 @@ body {
 section {
   padding: 8px;
 }
+
+.brand {
+  text-align: center;
+}
+
+.brand a {
+  width: 2em;
+  text-decoration: none;
+  color: #2b8fff;
+  font-size: 0.875em;
+}
