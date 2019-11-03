@@ -200,7 +200,7 @@ const Condition = ({ name, condition }: Props) => {
         )}
       </section>
       <section className="personalize">
-        <h3>Personlize your info:</h3>
+        <h3>Personalize your information</h3>
         <p>
           Choose your age and sex to see how other people like you were
           diagnosed and treated.
