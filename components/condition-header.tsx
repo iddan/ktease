@@ -8,10 +8,7 @@ type Props = {
 
 const ConditionHeader = ({ name, title }: Props) => {
   return (
-    <Link
-      href={`/conditions/[name]/symptoms`}
-      as={`/conditions/${name}/symptoms`}
-    >
+    <Link href={`/conditions/[name]`} as={`/conditions/${name}`}>
       <h1 className="title">{title}</h1>
     </Link>
   );
