@@ -24,6 +24,28 @@ const formatPlurals = (items: string[]): string => {
   }`;
 };
 
+const biologicalSexes = [
+  {
+    title: "Male",
+    value: "male"
+  },
+  {
+    title: "Female",
+    value: "female"
+  }
+];
+
+const BiologicalSexButton = ({ value, title, selected, onSelect }) => {
+  const handleClick = useCallback(() => {
+    onSelect(value);
+  }, [value]);
+  return (
+    <button onClick={handleClick} className={selected && "selected"}>
+      {title}
+    </button>
+  );
+};
+
 const Condition = ({ name, condition }: Props) => {
   const {
     title,
@@ -41,6 +63,10 @@ const Condition = ({ name, condition }: Props) => {
   const showMore = useCallback(() => {
     setShowSummary(false);
   }, [showSummary]);
+  const [biologicalSex, setBiologicalSex] = useState();
+  const handleBiologicalSexChange = useCallback((value) => {
+    setBiologicalSex(value);
+  }, [setBiologicalSex]);
   const symptomTitles = potentialSymptoms.map(symptom => symptom.title);
   const testTitles = tests.map(test => test.title);
   return (
@@ -70,8 +96,18 @@ const Condition = ({ name, condition }: Props) => {
         </p>
         <div className="controls">
           <div>
-            <button>Men</button>
-            <button>Women</button>
+            <BiologicalSexButton
+              value="male"
+              title="Male"
+              selected={biologicalSex === "male"}
+              onSelect={handleBiologicalSexChange}
+            />
+            <BiologicalSexButton
+              value="female"
+              title="Female"
+              selected={biologicalSex === "female"}
+              onSelect={handleBiologicalSexChange}
+            />
           </div>
           <div>
             <span>Age:</span>
