@@ -1,7 +1,14 @@
 import React from "react";
 
 const Treatment = () => {
-  return <div>Treatment</div>;
+  return (
+    <div>
+      <h2>Common Treatments</h2>
+      <h3>Who do I see?</h3>
+      <h3>How is it treated?</h3>
+      <h3>Medications prescribed</h3>
+    </div>
+  );
 };
 
 export default Treatment;
