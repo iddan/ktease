@@ -1,0 +1,5 @@
+# example netlify.toml
+[build]
+  command = "yarn run export && yarn run build-functions"
+  functions = "functions" #  netlify-lambda reads this
+  publish = "out"

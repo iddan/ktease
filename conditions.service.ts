@@ -45,8 +45,6 @@ export function getCondition(name: string): ConditionInfo | undefined {
   return conditionToData[name];
 }
 
-type Age = [number, number];
-
 export function getPersonalizedCondition(
   name: string,
   biologicalSex: BiologicalSex,
