@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import humanFormat from "human-format";
+import chevron from "./chevron.svg";
 import "./condition.css";
 
 type Props =
@@ -15,6 +16,10 @@ const formatPlurals = (items: string[]) => {
   return `${items.slice(0, items.length - 1).join(", ")} and ${
     items[items.length - 1]
   }`;
+};
+
+const Chevron = () => {
+  return <img className="chevron" src={chevron} />;
 };
 
 const Condition = ({ name, summary, description, plm }: Props) => {
@@ -53,18 +58,30 @@ const Condition = ({ name, summary, description, plm }: Props) => {
         Based on {humanFormat(plm).replace(" ", "")} cases with bladder
         infection. In this page you can learn more about how they got better:
       </p>
-      <p>
-        Watch for <b>symptoms</b> like {formatPlurals(symptoms)}.
+      <p className="followup-section">
+        <span>
+          Watch for <b>symptoms</b> like {formatPlurals(symptoms)}.
+        </span>
+        <Chevron />
       </p>
-      <p>
-        Get <b>tested</b>. Doctors often ordered a {formatPlurals(tests)}.
+      <p className="followup-section">
+        <span>
+          Get <b>tested</b>. Doctors often ordered a {formatPlurals(tests)}.
+        </span>
+        <Chevron />
       </p>
-      <p>
-        Explore <b>treatment</b> options, including which {treatments[0]} people
-        like you took.
+      <p className="followup-section">
+        <span>
+          Explore <b>treatment</b> options, including which {treatments[0]}{" "}
+          people like you took.
+        </span>
+        <Chevron />
       </p>
-      <p>
-        <b>Recovery</b> time for most cases of {name} is a few days.
+      <p className="followup-section">
+        <span>
+          <b>Recovery</b> time for most cases of {name} is a few days.
+        </span>
+        <Chevron />
       </p>
     </div>
   );

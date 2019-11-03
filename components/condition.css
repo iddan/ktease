@@ -29,3 +29,15 @@
 .condition .followup-intro {
   color: #00406b;
 }
+
+.condition .followup-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.condition .followup-section .chevron {
+  height: 13px;
+  display: inline-block;
+  margin-left: auto;
+}

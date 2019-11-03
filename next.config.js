@@ -1,12 +1,14 @@
 const withCSS = require("@zeit/next-css");
+const withImages = require("next-images");
 const withFonts = require("next-fonts");
 const withPlugins = require("next-compose-plugins");
 
-module.exports = withPlugins([
-  withFonts(),
-  withCSS({
-    cssLoaderOptions: {
-      url: false
-    }
-  })
-]);
+module.exports = withFonts(
+  withImages(
+    withCSS({
+      cssLoaderOptions: {
+        url: false
+      }
+    })
+  )
+);
