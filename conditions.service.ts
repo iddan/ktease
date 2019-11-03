@@ -1,4 +1,8 @@
-import { ConditionInfo, PersonalizedConditionInfo } from "./types";
+import {
+  ConditionInfo,
+  PersonalizedConditionInfo,
+  BiologicalSex
+} from "./types";
 import data from "./data";
 
 const mockCondition = {
@@ -41,8 +45,12 @@ export function getCondition(name: string): ConditionInfo | undefined {
   return conditionToData[name];
 }
 
+type Age = [number, number];
+
 export function getPersonalizedCondition(
-  name: string
+  name: string,
+  biologicalSex: BiologicalSex,
+  age: number
 ): Promise<PersonalizedConditionInfo | undefined> {
   return Promise.resolve({
     plm: 42,

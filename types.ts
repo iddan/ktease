@@ -37,3 +37,5 @@ export type PersonalizedConditionInfo = {
   treatments: Treatment[];
   recovery: Recovery | null;
 };
+
+export type BiologicalSex = "male" | "female";

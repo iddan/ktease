@@ -4,7 +4,11 @@ import humanFormat from "human-format";
 import ReactMarkdown from "react-markdown";
 import Chevron from "./chevron";
 import ConditionHeader from "./condition-header";
-import { ConditionInfo, PersonalizedConditionInfo } from "../types";
+import {
+  ConditionInfo,
+  PersonalizedConditionInfo,
+  BiologicalSex
+} from "../types";
 import "./condition.css";
 import { getPersonalizedCondition } from "../conditions.service";
 import logo from "../logo.webp";
@@ -25,17 +29,6 @@ const formatPlurals = (items: string[]): string => {
     items[items.length - 1]
   }`;
 };
-
-const biologicalSexes = [
-  {
-    title: "Male",
-    value: "male"
-  },
-  {
-    title: "Female",
-    value: "female"
-  }
-];
 
 const BiologicalSexButton = ({ value, title, selected, onSelect }) => {
   const handleClick = useCallback(() => {
@@ -156,7 +149,7 @@ const Condition = ({ name, condition }: Props) => {
   ] = useState<PersonalizedConditionInfo | null>(null);
   const [loading, setLoading] = useState(false);
   const handleBiologicalSexChange = useCallback(
-    value => {
+    (value: BiologicalSex) => {
       setBiologicalSex(value);
     },
     [setBiologicalSex]
@@ -170,7 +163,7 @@ const Condition = ({ name, condition }: Props) => {
 
   useEffect(() => {
     setLoading(true);
-    getPersonalizedCondition(name)
+    getPersonalizedCondition(name, biologicalSex, age)
       .then(data => {
         setPersonalizedData(data);
         setLoading(false);
@@ -179,7 +172,7 @@ const Condition = ({ name, condition }: Props) => {
         console.error(error);
         setLoading(false);
       });
-  }, [setPersonalizedData]);
+  }, [setPersonalizedData, biologicalSex, age]);
 
   return (
     <div className="condition">
@@ -187,7 +180,7 @@ const Condition = ({ name, condition }: Props) => {
         <ConditionHeader name={name} title={title} />
         <ReactMarkdown
           className="description"
-          source={showSummary ? summary : description}
+          source={showSummary ? summary : summary + "\n" + description}
         />
         {showSummary && (
           <button className="description-button" onClick={showMore}>
