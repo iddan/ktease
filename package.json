@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "human-format": "^0.10.1",
     "next": "9.1.2",
     "next-compose-plugins": "^2.2.0",
     "next-fonts": "^0.19.0",

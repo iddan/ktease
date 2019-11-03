@@ -25,3 +25,7 @@
   padding: 0;
   cursor: pointer;
 }
+
+.condition .followup-intro {
+  color: #00406b;
+}

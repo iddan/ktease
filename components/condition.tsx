@@ -1,15 +1,23 @@
 import React, { useState, useCallback } from "react";
+import humanFormat from "human-format";
 import "./condition.css";
 
 type Props =
-  | { name: string; summary: undefined; description: undefined }
+  | { name: string; summary: undefined; description: undefined; plm: undefined }
   | {
       name: string;
       summary: string;
       description: string;
+      plm: number;
     };
 
-const Condition = ({ name, summary, description }: Props) => {
+const formatPlurals = (items: string[]) => {
+  return `${items.slice(0, items.length - 1).join(", ")} and ${
+    items[items.length - 1]
+  }`;
+};
+
+const Condition = ({ name, summary, description, plm }: Props) => {
   const [showSummary, setShowSummary] = useState(true);
   const showLess = useCallback(() => {
     setShowSummary(true);
@@ -24,6 +32,9 @@ const Condition = ({ name, summary, description }: Props) => {
       </div>
     );
   }
+  const symptoms = ["Urinary Frequency", "Urinary Urgency"];
+  const tests = ["Urine Analysis", "Urine Culture"];
+  const treatments = ["antibiotics"];
   return (
     <div className="condition">
       <h1 className="title">{name}</h1>
@@ -38,6 +49,23 @@ const Condition = ({ name, summary, description }: Props) => {
           Show less
         </button>
       )}
+      <p className="followup-intro">
+        Based on {humanFormat(plm).replace(" ", "")} cases with bladder
+        infection. In this page you can learn more about how they got better:
+      </p>
+      <p>
+        Watch for <b>symptoms</b> like {formatPlurals(symptoms)}.
+      </p>
+      <p>
+        Get <b>tested</b>. Doctors often ordered a {formatPlurals(tests)}.
+      </p>
+      <p>
+        Explore <b>treatment</b> options, including which {treatments[0]} people
+        like you took.
+      </p>
+      <p>
+        <b>Recovery</b> time for most cases of {name} is a few days.
+      </p>
     </div>
   );
 };
