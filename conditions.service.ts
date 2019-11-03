@@ -1,5 +1,5 @@
 import { ConditionInfo } from "./types";
-import data from "./data.json";
+import data from "./data";
 
 const mockCondition = {
   plm: 3000000,

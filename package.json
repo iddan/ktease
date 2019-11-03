@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "tsc next.config.ts && next dev",
+    "build": "tsc next.config.ts && next build",
+    "start": "tsc next.config.ts && next start",
+    "export": "tsc next.config.ts && next export"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
