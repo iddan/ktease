@@ -1,34 +1,41 @@
 import React, { useState, useCallback } from "react";
 import "./condition.css";
 
-type Props = {
-  name: string;
-  shortDescription: string;
-  longDescription: string;
-};
+type Props =
+  | { name: string; summary: undefined; description: undefined }
+  | {
+      name: string;
+      summary: string;
+      description: string;
+    };
 
-const Condition = ({ name, shortDescription, longDescription }: Props) => {
-  const [showLong, setShowLong] = useState(false);
-  const showMore = useCallback(() => {
-    setShowLong(true);
-  }, [showLong]);
+const Condition = ({ name, summary, description }: Props) => {
+  const [showSummary, setShowSummary] = useState(true);
   const showLess = useCallback(() => {
-    setShowLong(false);
-  }, [showLong]);
+    setShowSummary(true);
+  }, [showSummary]);
+  const showMore = useCallback(() => {
+    setShowSummary(false);
+  }, [showSummary]);
+  if (summary === undefined) {
+    return (
+      <div className="condition">
+        <h1 className="title">Condition {name} was not found</h1>
+      </div>
+    );
+  }
   return (
     <div className="condition">
       <h1 className="title">{name}</h1>
-      <p className="description">
-        {showLong ? longDescription : shortDescription}
-      </p>
-      {!showLong && (
+      <p className="description">{showSummary ? summary : description}</p>
+      {showSummary && (
         <button className="description-button" onClick={showMore}>
-          {showLong ? "Read less" : "Read more"}
+          Show more
         </button>
       )}
-      {showLong && (
+      {!showSummary && (
         <button className="description-button" onClick={showLess}>
-          {showLong ? "Read less" : "Read more"}
+          Show less
         </button>
       )}
     </div>
