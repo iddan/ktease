@@ -1,4 +1,4 @@
-# K Tease
+![ktease](https://github.com/iddan/ktease/blob/master/hero.jpg?raw=true)
 
 A teaser for K's information web pages. The pages should give information about conditions and symptoms for people searching for them in a search engine and allow them to easily use the K app for further exploration and treatment.
 
